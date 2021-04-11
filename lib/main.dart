@@ -18,6 +18,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<String> _listItem = [
+    'lib/assets/images/city-one.jpg',
+    'lib/assets/images/city-two.jpg',
+    'lib/assets/images/city-tree.jpg',
+    'lib/assets/images/city-four.jpg',
+    'lib/assets/images/city-five.jpg',
+    'lib/assets/images/city-six.jpg',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,6 +106,38 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: 20),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: _listItem
+                    .map((item) => Card(
+                          color: Colors.transparent,
+                          elevation: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  image: AssetImage(item), fit: BoxFit.cover),
+                            ),
+                            child: Transform.translate(
+                              offset: Offset(60, -60),
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 75, vertical: 70),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                child: Icon(Icons.bookmark_border),
+                              ),
+                            ),
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),
